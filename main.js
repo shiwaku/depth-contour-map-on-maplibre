@@ -53,7 +53,7 @@ map.addControl(new maplibregl.ScaleControl({
 map.addControl(new maplibregl.AttributionControl({
   compact: true,
   customAttribution:
-    '<a href="https://twitter.com/shi__works" target="_blank">X(旧Twitter)</a> | <a href="">GitHub</a>'
+    '<a href="https://twitter.com/shi__works" target="_blank">X(旧Twitter)</a> | <a href="https://github.com/shiwaku/depth-contour-map-on-maplibre">GitHub</a>'
 }));
 
 // 3D地形コントロール
