@@ -60,7 +60,7 @@ body {
 .coords-display {
     position: absolute;
     font: bold 12px/14px "Helvetica Neue", Arial, Helvetica, sans-serif;
-    bottom: 100px;
+    bottom: 30px;
     left: 0px;
     margin: 10px;
     padding: 5px;

@@ -56,15 +56,13 @@ map.addControl(new maplibregl.AttributionControl({
     '<a href="https://twitter.com/shi__works" target="_blank">X(旧Twitter)</a> | <a href="">GitHub</a>'
 }));
 
-/*
 // 3D地形コントロール
 map.addControl(
   new maplibregl.TerrainControl({
-    source: 'mapzen',
-    exaggeration: 4 // 標高を強調する倍率
+    source: 'dem-tiles',
+    exaggeration: 1 // 標高を強調する倍率
   })
 );
-*/
 
 map.on('load', () => {
   // 標高タイルソース
@@ -81,17 +79,6 @@ map.on('load', () => {
   // 標高タイルセット
   map.setTerrain({ source: 'dem-tiles', exaggeration: 1 });
 
-  // スライダーでシームレス標高タイルの高さの倍率を制御
-  const exaggeration_sliderOpacity = document.getElementById('exaggeration-slider-opacity');
-  const exaggeration_sliderOpacityValue = document.getElementById('exaggeration-slider-opacity-value');
-
-  exaggeration_sliderOpacity.addEventListener('input', (e) => {
-    const exaggerationValue = parseFloat(e.target.value);
-    map.setTerrain({ source: 'dem-tiles', exaggeration: exaggerationValue });
-    exaggeration_sliderOpacityValue.textContent = e.target.value + '倍';
-  });
-
-  /*
   // 陰影起伏図レイヤー
   map.addLayer({
     id: "hillshade",
@@ -102,7 +89,6 @@ map.on('load', () => {
     layout: { visibility: 'visible' },
     paint: { 'hillshade-shadow-color': 'rgba(204,204,204,0.3)' }
   });
-  */
 
   const demSource = new mlcontour.DemSource({
     url: "https://gbank.gsj.jp/seamless/elev/terrainRGB/mixed/{z}/{y}/{x}.png",
