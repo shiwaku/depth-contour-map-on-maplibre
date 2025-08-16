@@ -18,8 +18,8 @@ const map = new maplibregl.Map({
   container: 'map',
   // style: 'https://tile.openstreetmap.jp/styles/maptiler-basic-ja/style.json',
   style: './basic.json',
-  center: [130.50264, 30.23973],
-  zoom: 11.99,
+  center: [138.9525, 35.0236],
+  zoom: 8.82,
   minZoom: 4,
   maxZoom: 11.99,
   pitch: 0,
@@ -79,6 +79,7 @@ map.on('load', () => {
   // 標高タイルセット
   map.setTerrain({ source: 'dem-tiles', exaggeration: 1 });
 
+  // 段彩図レイヤー
   map.addLayer({
     id: "dem-color-relief",
     type: "color-relief",
@@ -113,7 +114,6 @@ map.on('load', () => {
     },
   });
 
-  /*
   // 陰影起伏図レイヤー
   map.addLayer({
     id: "hillshade",
@@ -122,9 +122,8 @@ map.on('load', () => {
     minzoom: 1,
     maxzoom: 18,
     layout: { visibility: 'visible' },
-    paint: { 'hillshade-shadow-color': 'rgba(204,204,204,0.5)' }
+    paint: { 'hillshade-shadow-color': 'rgba(0,0,0,0.3)' }
   });
-  */
 
   // 標高タイルソース（等深線）
   const demSource = new mlcontour.DemSource({
