@@ -136,9 +136,9 @@ map.on('load', () => {
     source: "contour-source",
     "source-layer": "contours",
     paint: {
-      "line-color": "rgba(0, 0, 0, 0.5)",
+      "line-color": "rgba(0, 0, 255, 1)",
       // level = highest index in thresholds array the elevation is a multiple of
-      "line-width": ["match", ["get", "level"], 1, 1, 0.5],
+      "line-width": ["match", ["get", "level"], 1, 1.5, 0.5],
     },
   });
 
