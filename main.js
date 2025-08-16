@@ -110,7 +110,7 @@ map.on('load', () => {
         3000, 'rgb(243, 36, 13)',
         4000, 'rgb(215, 5, 13)'
       ],
-      "color-relief-opacity": 0.5
+      "color-relief-opacity": 0.6
     },
   });
 
