@@ -21,7 +21,7 @@ const map = new maplibregl.Map({
   center: [138.9525, 35.0236],
   zoom: 8.82,
   minZoom: 4,
-  maxZoom: 11.99,
+  maxZoom: 14,
   pitch: 0,
   maxPitch: 85,
   bearing: 0,
@@ -152,9 +152,9 @@ map.on('load', () => {
           9: [50, 100],
           10: [20, 100],
           11: [10, 100],
-          // 12: [5, 50],
-          // 14: [5, 50],
-          // 15: [5, 20],
+          12: [5, 50],
+          13: [5, 50],
+          14: [5, 50],
         },
         // optional override
         contourLayer: "contours",
@@ -213,7 +213,7 @@ function updateCoordsDisplay() {
   const elevTile = 'https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png'; // 統合DEM
   // const elevTile = "https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png"; // 陸域統合DEM
 
-  if (zoomLevel > 15) {
+  if (zoomLevel > 18) {
     document.getElementById("coords").innerHTML =
       "中心座標: " + lat + ", " + lng + "<br>" +
       "ズームレベル: " + map.getZoom().toFixed(2) + "<br>" +
