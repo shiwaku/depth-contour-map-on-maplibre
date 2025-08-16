@@ -79,6 +79,41 @@ map.on('load', () => {
   // 標高タイルセット
   map.setTerrain({ source: 'dem-tiles', exaggeration: 1 });
 
+  map.addLayer({
+    id: "dem-color-relief",
+    type: "color-relief",
+    source: "dem-tiles",
+    paint: {
+      'color-relief-color': [
+        'interpolate',
+        ['linear'],
+        ['elevation'],
+        -1000, 'rgb(0,0,101)',
+        -500, 'rgb(0,0,152)',
+        -200, 'rgb(0,0,203)',
+        -100, 'rgb(0,0,255)',
+        -50, 'rgb(50,50,255)',
+        -20, 'rgb(101,101,255)',
+        -10, 'rgb(153,153,255)',
+        -5, 'rgb(204,204,255)',
+        0, 'rgb(39, 144, 116)',
+        5, 'rgb(57, 169, 29)',
+        10, 'rgb(111, 186, 5)',
+        20, 'rgb(160, 201, 4)',
+        50, 'rgb(205, 216, 2)',
+        100, 'rgb(244, 221, 4)',
+        200, 'rgb(251, 194, 14)',
+        500, 'rgb(252, 163, 21)',
+        1000, 'rgb(253, 128, 20)',
+        2000, 'rgb(254, 85, 14)',
+        3000, 'rgb(243, 36, 13)',
+        4000, 'rgb(215, 5, 13)'
+      ],
+      "color-relief-opacity": 0.5
+    },
+  });
+
+  /*
   // 陰影起伏図レイヤー
   map.addLayer({
     id: "hillshade",
@@ -87,9 +122,11 @@ map.on('load', () => {
     minzoom: 1,
     maxzoom: 18,
     layout: { visibility: 'visible' },
-    paint: { 'hillshade-shadow-color': 'rgba(204,204,204,0.3)' }
+    paint: { 'hillshade-shadow-color': 'rgba(204,204,204,0.5)' }
   });
+  */
 
+  // 標高タイルソース（等深線）
   const demSource = new mlcontour.DemSource({
     url: "https://gbank.gsj.jp/seamless/elev/terrainRGB/mixed/{z}/{y}/{x}.png",
     // encoding: "terrarium",
@@ -101,6 +138,7 @@ map.on('load', () => {
   });
   demSource.setupMaplibre(maplibregl);
 
+  // 等深線ソース
   map.addSource("contour-source", {
     type: "vector",
     tiles: [
@@ -130,18 +168,20 @@ map.on('load', () => {
     maxzoom: 18,
   });
 
+  // 等深線レイヤー
   map.addLayer({
     id: "contour-lines",
     type: "line",
     source: "contour-source",
     "source-layer": "contours",
     paint: {
-      "line-color": "rgba(0, 0, 255, 1)",
+      "line-color": "rgba(0, 0, 0, 0.5)",
       // level = highest index in thresholds array the elevation is a multiple of
-      "line-width": ["match", ["get", "level"], 1, 1.5, 0.5],
+      "line-width": ["match", ["get", "level"], 1, 1, 0.5],
     },
   });
 
+  // 等深線ラベル
   map.addLayer({
     id: "contour-labels",
     type: "symbol",
@@ -161,6 +201,7 @@ map.on('load', () => {
       "text-halo-width": 1,
     },
   });
+
 });
 
 // 地図の中心座標と標高を表示
